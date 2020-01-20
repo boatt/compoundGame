@@ -15,7 +15,7 @@ public class CatInfo {
      */
     public int level = 1;
     /**
-     * 是不是一直刚出生的猫
+     * 是不是一只刚出生的猫
      */
     public boolean newCat;
     /**
