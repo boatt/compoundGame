@@ -11,17 +11,19 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.xiao.compound.utils.MockData;
+import com.xiao.compound.utils.SoundPlayUtils;
 
 public class MainActivity extends AppCompatActivity {
     Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-
+        SoundPlayUtils.init(this);
         final GameLayout gameLayout = new GameLayout(context);
         setContentView(gameLayout);
-
+        getLifecycle().addObserver(gameLayout);
         Button addButton = new Button(context);
         addButton.setText("添加");
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 120, Gravity.BOTTOM);
@@ -29,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean success =  MockData.getInstance().addData();
+                boolean success = MockData.getInstance().addData();
                 if (!success) {
                     Toast.makeText(context, "没有空位了", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     gameLayout.requestLayoutCatView();
+                    SoundPlayUtils.play(2);
                 }
             }
         });
-        gameLayout.addView(addButton,params);
+        gameLayout.addView(addButton, params);
     }
 }

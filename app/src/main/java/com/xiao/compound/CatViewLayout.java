@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -83,7 +84,7 @@ public class CatViewLayout extends FrameLayout {
             }
         }
 
-        mHandler.sendEmptyMessageDelayed(1, ANIMATOR_BEAT_TIME);
+        startBeat();
     }
 
 
@@ -151,7 +152,16 @@ public class CatViewLayout extends FrameLayout {
                 row++;
             }
         }
+        Log.d("111", "33333");
     }
+
+    public void stopBeat() {
+        mHandler.removeMessages(1);
+    }
+    public void startBeat() {
+        mHandler.sendEmptyMessageDelayed(1, ANIMATOR_BEAT_TIME);
+    }
+
 
     Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -162,10 +172,6 @@ public class CatViewLayout extends FrameLayout {
             animatorBeat();
         }
     };
-
-
-
-
 
     /**
      * 金币上涨 跳动动画

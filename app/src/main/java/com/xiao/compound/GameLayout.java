@@ -12,12 +12,16 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import com.xiao.compound.bean.CatInfo;
 import com.xiao.compound.utils.AnimatorUtils;
 import com.xiao.compound.utils.ResUtils;
+import com.xiao.compound.utils.SoundPlayUtils;
 
-public class GameLayout extends FrameLayout {
+public class GameLayout extends FrameLayout implements LifecycleObserver {
 
     private View mFloatCatView;
     ImageView mToLeftImageView;
@@ -47,6 +51,20 @@ public class GameLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
         init();
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    void onResume() {
+        mCatViewLayout.startBeat();
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    void onPause() {
+        mCatViewLayout.stopBeat();
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    void onDestroy() {
+        mCatViewLayout.stopBeat();
+    }
+
 
     private void init() {
         mSetViewLayout = new SeatViewLayout(getContext());
@@ -136,7 +154,8 @@ public class GameLayout extends FrameLayout {
                                 mMergePoint = new Rect(swapLocation.left, swapLocation.top, swapLocation.right, swapLocation.bottom);
                                 //合并
                                 mCatViewLayout.mergeCat(mTouchIndex, targetIndex);
-
+                                Log.d("xxxxx ", "合并 " + targetIndex);
+                                SoundPlayUtils.play(3);
                                 AnimatorUtils.mergeAnimatorToLeft(mToLeftImageView);
                                 AnimatorUtils.mergeAnimatorToRight(mToRightImageView);
                             }
