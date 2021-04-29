@@ -13,15 +13,7 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
-/**
- * Desc:
- * <p> @Author: ZhouTao
- * <p>Date: 2020/1/21
- * <p>Copyright: Copyright (c) 2016-2020
- * <p>Company: @小牛科技
- * <p>Email:zhoutao@xiaoniuhy.com
- * <p>Update Comments:
- */
+
 public class AnimatorUtils {
 
     /**
