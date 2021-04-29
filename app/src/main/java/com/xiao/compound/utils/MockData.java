@@ -2,15 +2,6 @@ package com.xiao.compound.utils;
 
 import com.xiao.compound.bean.CatInfo;
 
-/**
- * Desc:
- * <p> @Author: ZhouTao
- * <p>Date: 2020/1/18
- * <p>Copyright: Copyright (c) 2016-2020
- * <p>Company: @小牛科技
- * <p>Email:zhoutao@xiaoniuhy.com
- * <p>Update Comments:
- */
 public class MockData {
     CatInfo[] catList = new CatInfo[12];
     private static final MockData ourInstance = new MockData();
