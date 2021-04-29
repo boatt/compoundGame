@@ -2,15 +2,7 @@ package com.xiao.compound.utils;
 
 import com.xiao.compound.R;
 
-/**
- * Desc:
- * <p> @Author: ZhouTao
- * <p>Date: 2020/1/18
- * <p>Copyright: Copyright (c) 2016-2020
- * <p>Company: @小牛科技
- * <p>Email:zhoutao@xiaoniuhy.com
- * <p>Update Comments:
- */
+
 public class ResUtils {
     public static int getCatImage(int level) {
         int res = 0;
